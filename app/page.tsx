@@ -1,3 +1,10 @@
+import { Button } from "@radix-ui/themes";
+
 export default function Home() {
-  return <div>Hello World!</div>;
+  return (
+    <div>
+      <div>Hello World!</div>
+      <Button>TODO</Button>
+    </div>
+  );
 }
