@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { issueSchema } from "@/app/validationSchema";
 import { z } from "zod";
+import { ErrorMessage } from "@/app/components";
 
 type Issue = z.infer<typeof issueSchema>;
 
@@ -54,10 +55,8 @@ export default function NewIssuePage() {
 
         <Box>
           <TextField.Root placeholder="Title…" {...register("title")} />
-          {errors.title && (
-            <Text color="red" mb="2">
-              {errors.title.message}
-            </Text>
+          {errors.title?.message && (
+            <ErrorMessage error={errors.title.message} />
           )}
         </Box>
         <Box>
@@ -68,10 +67,8 @@ export default function NewIssuePage() {
               <SimpleMDE placeholder="Description" {...field} />
             )}
           />
-          {errors.description && (
-            <Text color="red" mb="2">
-              {errors.description.message}
-            </Text>
+          {errors.description?.message && (
+            <ErrorMessage error={errors.description.message} />
           )}
         </Box>
 
