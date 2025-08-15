@@ -33,6 +33,7 @@ export default function NewIssuePage() {
     },
   });
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <Box maxWidth="50%">
@@ -40,10 +41,13 @@ export default function NewIssuePage() {
         className="space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setSubmitting(true);
             await axios.post("/api/issues", data);
             router.push("/issues");
           } catch (error) {
             setError("An unexpected error occurred.");
+          } finally {
+            setSubmitting(false);
           }
         })}
       >
@@ -56,7 +60,7 @@ export default function NewIssuePage() {
         <Box>
           <TextField.Root placeholder="Title…" {...register("title")} />
           {errors.title?.message && (
-            <ErrorMessage error={errors.title.message} />
+            <ErrorMessage>{errors.title.message}</ErrorMessage>
           )}
         </Box>
         <Box>
@@ -68,11 +72,11 @@ export default function NewIssuePage() {
             )}
           />
           {errors.description?.message && (
-            <ErrorMessage error={errors.description.message} />
+            <ErrorMessage>{errors.description.message}</ErrorMessage>
           )}
         </Box>
 
-        <Button>Submit New Issue</Button>
+        <Button loading={submitting}>Submit New Issue</Button>
       </form>
     </Box>
   );
