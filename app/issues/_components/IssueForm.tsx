@@ -39,6 +39,14 @@ export default function NewIssuePage({ issue }: IssueFormProps) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
+
+      if (issue) {
+        // Update existing issue
+        await axios.patch(`/api/issues/${issue.id}`, data);
+        router.push(`/issues/${issue.id}`);
+        return;
+      }
+
       await axios.post("/api/issues", data);
       router.push("/issues");
     } catch (error) {
@@ -81,7 +89,9 @@ export default function NewIssuePage({ issue }: IssueFormProps) {
           )}
         </Box>
 
-        <Button loading={submitting}>Submit New Issue</Button>
+        <Button loading={submitting}>
+          {issue ? "Update issue" : "Submit New Issue"}
+        </Button>
       </form>
     </Box>
   );
