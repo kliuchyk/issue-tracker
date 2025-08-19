@@ -5,14 +5,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export default function LoadingIssueDetails() {
   return (
-    <Box>
-      <Skeleton width="10rem" />
+    <Box className="max-w-xl">
+      <Skeleton width="200px" />
       <Flex gap="2" my="2">
         <Skeleton width="5rem" />
-        <Skeleton />
+        <Skeleton width="8rem" />
       </Flex>
       <Card className="prose" mt="4">
-        <Skeleton />
+        <Skeleton count={3} />
       </Card>
     </Box>
   );

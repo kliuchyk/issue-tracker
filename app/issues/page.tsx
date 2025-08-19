@@ -10,9 +10,7 @@ export default async function IssuesPage() {
   return (
     <div>
       <Box className="mb-5">
-        <Button>
-          <Link href="/issues/new">New Issue</Link>
-        </Button>
+        <Link href="/issues/new">New Issue</Link>
       </Box>
       <Table.Root variant="surface">
         <Table.Header>
