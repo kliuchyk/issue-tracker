@@ -1,7 +1,7 @@
 "use client";
 
 import "easymde/dist/easymde.min.css";
-import { Box, Button, Callout, Text, TextField } from "@radix-ui/themes";
+import { Box, Button, Callout, TextField } from "@radix-ui/themes";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
