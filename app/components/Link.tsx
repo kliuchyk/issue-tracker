@@ -8,8 +8,8 @@ interface Props {
 
 export function Link({ children, href }: Props) {
   return (
-    <NextLink href={href} passHref legacyBehavior>
-      <RadixLink>{children}</RadixLink>
-    </NextLink>
+    <RadixLink asChild>
+      <NextLink href={href}>{children}</NextLink>
+    </RadixLink>
   );
 }
