@@ -6,8 +6,6 @@ export default function LoadingIssuesPage() {
     .fill(null)
     .map((_, index) => index + 1);
 
-  console.log("issues: ", issues);
-
   return (
     <Table.Root variant="surface">
       <Table.Header>
