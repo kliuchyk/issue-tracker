@@ -2,13 +2,11 @@ import prisma from "@/prisma/client";
 import { Box, Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import { StatusBadge } from "../components";
-import delay from "delay";
 
 export default async function IssuesPage() {
   const issues = await prisma.issue.findMany({
     orderBy: { createdAt: "desc" },
   });
-  await delay(2000); // Simulate a delay for demonstration purposes
 
   return (
     <div>
@@ -33,7 +31,7 @@ export default async function IssuesPage() {
           {issues.map(({ id, status, title, createdAt }) => (
             <Table.Row key={id}>
               <Table.Cell>
-                {title}
+                <Link href={`/issues/${id}`}>{title}</Link>
                 <div className="block md:hidden">
                   <StatusBadge status={status} />
                 </div>
