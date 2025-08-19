@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { Box, Button, Table } from "@radix-ui/themes";
 import { Link, StatusBadge } from "../components";
+import NextLink from "next/link";
 
 export default async function IssuesPage() {
   const issues = await prisma.issue.findMany({
@@ -10,7 +11,9 @@ export default async function IssuesPage() {
   return (
     <div>
       <Box className="mb-5">
-        <Link href="/issues/new">New Issue</Link>
+        <Button>
+          <NextLink href="/issues/new">New Issue</NextLink>
+        </Button>
       </Box>
       <Table.Root variant="surface">
         <Table.Header>
