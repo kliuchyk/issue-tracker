@@ -12,12 +12,9 @@ import { issueSchema } from "@/app/validationSchema";
 import { z } from "zod";
 import { ErrorMessage } from "@/app/components";
 import { Issue } from "@prisma/client";
+import SimpleMdeReact from "react-simplemde-editor";
 
 type IssueFormData = z.infer<typeof issueSchema>;
-
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
 
 interface IssueFormProps {
   issue?: Issue;
@@ -81,7 +78,7 @@ export default function NewIssuePage({ issue }: IssueFormProps) {
             control={control}
             defaultValue={issue?.description || ""}
             render={({ field }) => (
-              <SimpleMDE placeholder="Description" {...field} />
+              <SimpleMdeReact placeholder="Description" {...field} />
             )}
           />
           {errors.description?.message && (
